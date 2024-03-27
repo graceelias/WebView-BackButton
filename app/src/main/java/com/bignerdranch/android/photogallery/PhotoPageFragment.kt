@@ -2,6 +2,7 @@ package com.bignerdranch.android.photogallery
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +57,33 @@ class PhotoPageFragment : Fragment() {
                         val parent = requireActivity() as AppCompatActivity
                         parent.supportActionBar?.subtitle = title
                     }
+                }
+            }
+
+            webView.setOnKeyListener{ v, keyCode, event ->
+                if (event.action == KeyEvent.ACTION_DOWN)
+                {
+                    val webView = v as WebView
+
+                    when (keyCode)
+                    {
+                        KeyEvent.KEYCODE_BACK -> {
+                            if (webView.canGoBack())
+                            {
+                                webView.goBack()
+                                true
+                            }
+                            else
+                            {
+                                false
+                            }
+                        }
+                        else -> false
+                    }
+                }
+                else
+                {
+                    false
                 }
             }
         }
