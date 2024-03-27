@@ -75,7 +75,8 @@ class PhotoPageFragment : Fragment() {
                             }
                             else
                             {
-                                false
+                                activity?.onBackPressed()
+                                true
                             }
                         }
                         else -> false
